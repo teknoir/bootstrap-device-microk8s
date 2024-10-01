@@ -42,7 +42,7 @@ export _DEVICE_ID=${DEVICE}
 gcloud config set project ${_GCP_PROJECT}
 gcloud config set compute/zone ${ZONE}
 
-export DEVICE_MANIFEST="$(kubectl --context $CONTEXT -n $NAMESPACE get device $DEVICE -o yaml)"
+export DEVICE_MANIFEST="$(kubectl --context $CONTEXT -n $NAMESPACE get device.teknoir.org $DEVICE -o yaml)"
 if [ -z ${DEVICE_MANIFEST+x} ] || [ "${DEVICE_MANIFEST}" = "" ]; then
   echo "DEVICE_MANIFEST not found"
   exit 1
@@ -87,6 +87,9 @@ sed -i '' "s/###_DEVICE_ID###/${_DEVICE_ID}/g" "${BOOTSTRAP_FILE}"
 sed -i '' "s/###_IOT_REGISTRY###/${_IOT_REGISTRY}/g" "${BOOTSTRAP_FILE}"
 sed -i '' "s/###_AR_DOCKER_SECRET###/${_AR_DOCKER_SECRET}/g" ${BOOTSTRAP_FILE}
 sed -i '' "s/###_GCP_PROJECT###/${_GCP_PROJECT}/g" ${BOOTSTRAP_FILE}
+sed -i '' "s/###_FIRST_USER_NAME###/${_FIRST_USER_NAME}/g" ${BOOTSTRAP_FILE}
+sed -i '' "s/###_FIRST_USER_PASS###/${_FIRST_USER_PASS}/g" ${BOOTSTRAP_FILE}
+sed -i '' "s/###_FIRST_USER_KEY###/${_FIRST_USER_KEY}/g" ${BOOTSTRAP_FILE}
 
 replace_placeholder_with_variable ${BOOTSTRAP_FILE} "###_RSA_PRIVATE###" "${_RSA_PRIVATE}"
 

@@ -1,3 +1,7 @@
+_FIRST_USER_NAME=###_FIRST_USER_NAME###
+_FIRST_USER_PASS=###_FIRST_USER_PASS###
+_FIRST_USER_KEY=###_FIRST_USER_KEY###
+
 warn "To enable tunneling, the user ${_FIRST_USER_NAME} has to be created."
 
 on_sudo() {
